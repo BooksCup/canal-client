@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bc.canal.client.cons.Constants;
 import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSON;
@@ -74,7 +75,7 @@ public class DataParser {
                         append(",\"time\":\"").append(timeStr).append("\"}");
                 String rowStr = rowBuffer.toString();
                 //打印rowData
-                if ("y".equalsIgnoreCase(CanalClient.canalPrint)) {
+                if (Constants.CANAL_PRINT_TRUE.equalsIgnoreCase(CanalClient.canalPrint)) {
                     logger.info(rowStr);
                 }
                 //写日志
@@ -99,7 +100,7 @@ public class DataParser {
         }
     }
 
-    public static String columnsListToJsonStr(List<Column> columns) {
+    private static String columnsListToJsonStr(List<Column> columns) {
         Map<String, String> columnMap = new HashMap<>();
         for (Column column : columns) {
             String columnName = column.getName();

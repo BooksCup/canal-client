@@ -27,13 +27,19 @@ public class Constants {
      */
     public static final String CANAL_BATCHSIZE_KEY = "canal.batchsize";
 
-    //CANAL SLEEP
+    /**
+     * CANAL SLEEP
+     */
     public static final String CANAL_SLEEP_KEY = "canal.sleep";
 
-    //CANAL PRINT
+    /**
+     * CANAL PRINT
+     */
     public static final String CANAL_PRINT_KEY = "canal.print";
 
-    //CANAL BINLOG FILENAME
+    /**
+     * CANAL BINLOG FILENAME
+     */
     public static final String CANAL_BINLOG_FILENAME_KEY = "canal.binlog.filename";
 
     //CANAL BINLOG DIR
@@ -42,7 +48,11 @@ public class Constants {
     //CANAL MQ
     public static final String CANAL_MQ_KEY = "canal.mq";
 
-    //RABBITMQ
+    public static final String CANAL_PRINT_TRUE = "y";
+
+    /**
+     * rabbitMq
+     */
     public static final String RABBITMQ_HOST_KEY = "rabbitmq.host";
 
     public static final String RABBITMQ_PORT_KEY = "rabbitmq.port";
@@ -63,14 +73,20 @@ public class Constants {
 
     public static final String RABBITMQ_ROUTINGKEY_KEY = "rabbitmq.routing.key";
 
-    //REDIS
+    public static final String RABBITMQ_DURABLE_TRUE = "y";
+
+    /**
+     * redis
+     */
     public static final String REDIS_HOST_KEY = "redis.host";
 
     public static final String REDIS_PORT_KEY = "redis.port";
 
     public static final String REDIS_QUEUENAME_KEY = "redis.queuename";
 
-    //kafka
+    /**
+     * kafka
+     */
     public static final String KAFKA_BOOTSTRAP_SERVERS_KEYS = "kafka.bootstrap.servers";
 
     public static final String KAFKA_TOPIC_KEYS = "kafka.topic";
@@ -138,7 +154,9 @@ public class Constants {
 
     public static final String DEFAULT_REDIS_QUEUENAME = "canal_binlog_data";
 
-    //KAFKA
+    /**
+     * kafka
+     */
     public static final String DEFAULT_KAFKA_BOOTSTRAP_SERVERS = "127.0.0.1:9092";
 
     public static final String DEFAULT_KAFKA_TOPIC = "canal_binlog_data";

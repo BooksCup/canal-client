@@ -14,6 +14,7 @@ import com.rabbitmq.client.MessageProperties;
 
 /**
  * Rabbitmq发送类
+ *
  * @author zhou
  */
 public class RabbitmqSender {
@@ -25,11 +26,12 @@ public class RabbitmqSender {
         factory.setPort(CanalClient.rabbitmqPortInt);
         factory.setUsername(CanalClient.rabbitmqUser);
         factory.setPassword(CanalClient.rabbitmqPass);
-        String routingKey = "";
+        // routingKey
+        String routingKey = CanalClient.rabbitmqRoutingKey;
 
         try {
             boolean durable = false;
-            if ("y".equalsIgnoreCase(CanalClient.rabbitmqDurable)) {
+            if (Constants.RABBITMQ_DURABLE_TRUE.equalsIgnoreCase(CanalClient.rabbitmqDurable)) {
                 durable = true;
             }
             Connection connection = null;
@@ -43,29 +45,28 @@ public class RabbitmqSender {
 
                 // 声明交换机类型
                 if (Constants.RABBITMQ_EXCHANGE_TYPE_DIRECT.equalsIgnoreCase(CanalClient.rabbitmqExchangeType)) {
-
-                    channel.exchangeDeclare(CanalClient.rabbitmqExchangeName, "direct");
+                    // direct
+                    channel.exchangeDeclare(CanalClient.rabbitmqExchangeName, CanalClient.rabbitmqExchangeType);
                     channel.queueDeclare(CanalClient.rabbitmqQueuename, durable, false, false, null);
                     channel.queueBind(CanalClient.rabbitmqQueuename, CanalClient.rabbitmqExchangeName, routingKey);
 
                 } else if (Constants.RABBITMQ_EXCHAGE_TYPE_TOPIC.equalsIgnoreCase(CanalClient.rabbitmqExchangeType)) {
-
-                    channel.exchangeDeclare(CanalClient.rabbitmqExchangeName, "topic");
+                    //topic
+                    channel.exchangeDeclare(CanalClient.rabbitmqExchangeName, CanalClient.rabbitmqExchangeType);
                     channel.queueDeclare(CanalClient.rabbitmqQueuename, durable, false, false, null);
                     channel.queueBind(CanalClient.rabbitmqQueuename, CanalClient.rabbitmqExchangeName, routingKey);
 
                 } else if (Constants.RABBITMQ_EXCHANGE_TYPE_FANOUT.equalsIgnoreCase(CanalClient.rabbitmqExchangeType)) {
-
+                    // fanout
                     // fanout广播行为,无需配置routingKey
-                    channel.exchangeDeclare(CanalClient.rabbitmqExchangeName, "fanout");
+                    channel.exchangeDeclare(CanalClient.rabbitmqExchangeName, CanalClient.rabbitmqExchangeType);
 
                 } else {
-
+                    // unknown
                     logger.error("unknown exchange type: " + CanalClient.rabbitmqExchangeType);
                     return;
 
                 }
-
                 for (String data : dataList) {
                     channel.basicPublish(CanalClient.rabbitmqExchangeName, routingKey,
                             MessageProperties.PERSISTENT_TEXT_PLAIN, data.getBytes());
@@ -81,7 +82,7 @@ public class RabbitmqSender {
                 }
             }
         } catch (Exception e) {
-            logger.error("fail to send data to rabbitmq: " + e.getMessage());
+            logger.error("fail to send data to rabbitmq, error: " + e.getMessage());
         }
 
     }

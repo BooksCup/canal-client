@@ -23,11 +23,15 @@ public class RedisSender {
                 for (String data : dataList) {
                     jedis.rpush(CanalClient.redisQueuename, data);
                 }
+            } catch (Exception e) {
+                logger.error("redis send msg error: " + e.getMessage());
             } finally {
-                jedis.close();
+                if (null != jedis) {
+                    jedis.close();
+                }
             }
         } catch (Exception e) {
-            logger.error("Fail to send data from redis: " + e.getMessage());
+            logger.error("fail to send data from redis, error: " + e.getMessage());
         }
     }
 }

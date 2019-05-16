@@ -61,6 +61,8 @@ public class Constants {
 
     public static final String RABBITMQ_EXCHANGE_NAME_KEY = "rabbitmq.exchange.name";
 
+    public static final String RABBITMQ_ROUTINGKEY_KEY = "rabbitmq.routing.key";
+
     //REDIS
     public static final String REDIS_HOST_KEY = "redis.host";
 
@@ -120,6 +122,8 @@ public class Constants {
     public static final String DEFAULT_RABBITMQ_EXCHANGE_TYPE = "direct";
 
     public static final String DEFAULT_RABBITMQ_EXCHANGE_NAME = "cfpu_saas";
+
+    public static final String DEFAULT_RABBITMQ_ROUTING_KEY = "";
 
     //REDIS
     /**

@@ -49,6 +49,7 @@ public class CanalClient {
     public static String rabbitmqDurable;
     public static String rabbitmqExchangeType;
     public static String rabbitmqExchangeName;
+    public static String rabbitmqRoutingKey;
 
     public static int rabbitmqPortInt;
 
@@ -175,7 +176,9 @@ public class CanalClient {
         // 交换器名
         rabbitmqExchangeName = ConfigUtils.getProperty(Constants.RABBITMQ_EXCHANGE_NAME_KEY,
                 Constants.DEFAULT_RABBITMQ_EXCHANGE_NAME);
-
+        // routingKey
+        rabbitmqRoutingKey = ConfigUtils.getProperty(Constants.RABBITMQ_ROUTINGKEY_KEY,
+                Constants.DEFAULT_RABBITMQ_ROUTING_KEY);
 
         //redis
         redisHost = ConfigUtils.getProperty(Constants.REDIS_HOST_KEY,

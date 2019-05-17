@@ -35,4 +35,13 @@
     rabbitmq.exchange.name = wd.basic.data.sync.exchange
     rabbitmq.routing.key = 
     
+
+### redis
+    使用的redis数据类型:列表类型(list)
+    使用的redis函数:rpush(生产者),lpop(消费者)
+    需要配置redis的ip,端口和队列名,如果redis服务有密码需要配置password,没有则无需配置
+    redis.host = 127.0.0.1
+    redis.port = 6379
+    redis.password = 
+    redis.queuename = canal_binlog_data
     

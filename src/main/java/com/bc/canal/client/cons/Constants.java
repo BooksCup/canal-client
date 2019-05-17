@@ -45,10 +45,18 @@ public class Constants {
     //CANAL BINLOG DIR
     public static final String CANAL_BINLOG_DIR_KEY = "canal.binlog.dir";
 
-    //CANAL MQ
+    /**
+     * CANAL MQ
+     */
     public static final String CANAL_MQ_KEY = "canal.mq";
 
     public static final String CANAL_PRINT_TRUE = "y";
+
+    public static final String CANAL_MQ_RABBITMQ = "rabbitmq";
+
+    public static final String CANAL_MQ_REDIS = "redis";
+
+    public static final String CANAL_MQ_KAFKA = "kafka";
 
     /**
      * rabbitMq

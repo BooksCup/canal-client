@@ -87,15 +87,15 @@ public class DataParser {
 
         //发送MQ
         //rabbitmq
-        if ("rabbitmq".equalsIgnoreCase(CanalClient.canalMq)) {
+        if (Constants.CANAL_MQ_RABBITMQ.equalsIgnoreCase(CanalClient.canalMq)) {
             RabbitmqSender.send(dataList);
         }
         //redis
-        else if ("redis".equalsIgnoreCase(CanalClient.canalMq)) {
+        else if (Constants.CANAL_MQ_REDIS.equalsIgnoreCase(CanalClient.canalMq)) {
             RedisSender.send(dataList);
         }
         //kafka
-        else if ("kafka".equalsIgnoreCase(CanalClient.canalMq)) {
+        else if (Constants.CANAL_MQ_KAFKA.equalsIgnoreCase(CanalClient.canalMq)) {
             KafkaSender.send(dataList);
         }
     }

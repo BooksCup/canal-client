@@ -3,7 +3,7 @@
 使用场景:异步同步业务数据至多端,比如可以监听商品库,解析binlog增量数据,发送商品改动数据(增删改)至MQ的某个topic中,在多个数据源中订阅这个topic,更新多个数据源的数据,比如写入es集群和分布式缓存架构中  
 
 ## 各种MQ的介绍和接入说明:
-### `rabbitMQ`  
+### `rabbitMQ:`  
     根据业务场景选择交换机的类型:  
    #### direct
     P2P(点对点)场景可以使用direct,需要配置交换机类型为direct,
@@ -36,7 +36,7 @@
     rabbitmq.routing.key = 
     
 
-### `redis`  
+### `redis:`  
     使用的redis数据类型:列表类型(list)
     使用的redis函数:rpush(生产者),lpop(消费者)
     需要配置redis的ip,端口和队列名,如果redis服务有密码需要配置password,没有则无需配置

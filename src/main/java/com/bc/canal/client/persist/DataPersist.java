@@ -63,7 +63,7 @@ public class DataPersist {
                 writer.close();
             }
         } catch (Exception e) {
-            logger.warn("Failed to write data logs(" + dataLogName + "): " + e.getMessage());
+            logger.error("Failed to write data logs(" + dataLogName + "), error: " + e.getMessage());
         }
     }
 }

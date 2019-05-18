@@ -17,10 +17,11 @@ import com.rabbitmq.client.MessageProperties;
  *
  * @author zhou
  */
-public class RabbitmqSender {
+public class RabbitmqSender implements MqSender {
     private static final Logger logger = Logger.getLogger(RabbitmqSender.class);
 
-    public static void send(List<String> dataList) {
+    @Override
+    public void send(List<String> dataList) {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(CanalClient.rabbitmqHost);
         factory.setPort(CanalClient.rabbitmqPortInt);

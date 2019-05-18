@@ -11,12 +11,14 @@ import org.apache.log4j.Logger;
 import com.bc.canal.client.CanalClient;
 
 /**
+ * kafka发送类
  * @author zhou
  */
-public class KafkaSender {
+public class KafkaSender implements MqSender {
     private static final Logger logger = Logger.getLogger(KafkaSender.class);
 
-    public static void send(List<String> dataList) {
+    @Override
+    public void send(List<String> dataList) {
         //后面补上异步消息的逻辑
         Properties props = new Properties();
         props.put("bootstrap.servers", CanalClient.kafkaBootstrapServers);

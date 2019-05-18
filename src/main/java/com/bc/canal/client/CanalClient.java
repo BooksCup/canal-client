@@ -59,6 +59,7 @@ public class CanalClient {
     public static String redisHost;
     public static String redisPort;
     public static String redisQueuename;
+    public static String redisPassword;
 
     public static int redisPortInt;
 
@@ -193,6 +194,9 @@ public class CanalClient {
         }
         redisQueuename = ConfigUtils.getProperty(Constants.REDIS_QUEUENAME_KEY,
                 Constants.DEFAULT_REDIS_QUEUENAME);
+
+        redisPassword = ConfigUtils.getProperty(Constants.REDIS_PASSWORD_KEY,
+                Constants.DEFAULT_REDIS_PASSWORD);
 
         //kafka
         kafkaBootstrapServers = ConfigUtils.getProperty(Constants.KAFKA_BOOTSTRAP_SERVERS_KEYS,

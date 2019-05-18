@@ -42,7 +42,9 @@ public class Constants {
      */
     public static final String CANAL_BINLOG_FILENAME_KEY = "canal.binlog.filename";
 
-    //CANAL BINLOG DIR
+    /**
+     * CANAL BINLOG DIR
+     */
     public static final String CANAL_BINLOG_DIR_KEY = "canal.binlog.dir";
 
     /**
@@ -91,6 +93,8 @@ public class Constants {
     public static final String REDIS_PORT_KEY = "redis.port";
 
     public static final String REDIS_QUEUENAME_KEY = "redis.queuename";
+
+    public static final String REDIS_PASSWORD_KEY = "redis.password";
 
     /**
      * kafka
@@ -161,6 +165,8 @@ public class Constants {
     public static final String DEFAULT_REDIS_PORT = "6379";
 
     public static final String DEFAULT_REDIS_QUEUENAME = "canal_binlog_data";
+
+    public static final String DEFAULT_REDIS_PASSWORD = "";
 
     /**
      * kafka

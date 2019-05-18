@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.bc.canal.client.cons.Constants;
+import com.bc.canal.client.handler.MqSenderHandler;
+import com.bc.canal.client.mq.MqSender;
 import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSON;
@@ -86,18 +88,9 @@ public class DataParser {
         }
 
         //发送MQ
-        //rabbitmq
-        if (Constants.CANAL_MQ_RABBITMQ.equalsIgnoreCase(CanalClient.canalMq)) {
-            RabbitmqSender.send(dataList);
-        }
-        //redis
-        else if (Constants.CANAL_MQ_REDIS.equalsIgnoreCase(CanalClient.canalMq)) {
-            RedisSender.send(dataList);
-        }
-        //kafka
-        else if (Constants.CANAL_MQ_KAFKA.equalsIgnoreCase(CanalClient.canalMq)) {
-            KafkaSender.send(dataList);
-        }
+        MqSender mqSender = MqSenderHandler.getMqSender(CanalClient.canalMq);
+        mqSender.send(dataList);
+
     }
 
     private static String columnsListToJsonStr(List<Column> columns) {

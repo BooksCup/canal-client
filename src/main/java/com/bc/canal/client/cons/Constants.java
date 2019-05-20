@@ -48,6 +48,19 @@ public class Constants {
     public static final String CANAL_BINLOG_DIR_KEY = "canal.binlog.dir";
 
     /**
+     * CANAL BINLOG FORMAT
+     */
+    public static final String CANAL_BINLOG_FORMAT_YEAR = "y";
+
+    public static final String CANAL_BINLOG_FORMAT_MONTH = "m";
+
+    public static final String CANAL_BINLOG_FORMAT_DAY = "d";
+
+    public static final String CANAL_BINLOG_FORMAT_HOUR = "h";
+
+    public static final String CANAL_BINLOG_FORMAT_MINUTE = "i";
+
+    /**
      * CANAL MQ
      */
     public static final String CANAL_MQ_KEY = "canal.mq";

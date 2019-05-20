@@ -31,14 +31,14 @@ public class RedisSender implements MqSender {
                     jedis.rpush(CanalClient.redisQueuename, data);
                 }
             } catch (Exception e) {
-                logger.error("redis send msg error: " + e.getMessage());
+                logger.error("fail to send data from redis: " + e.getMessage());
             } finally {
                 if (null != jedis) {
                     jedis.close();
                 }
             }
         } catch (Exception e) {
-            logger.error("fail to send data from redis, error: " + e.getMessage());
+            logger.error("fail to send data from redis: " + e.getMessage());
         }
     }
 }

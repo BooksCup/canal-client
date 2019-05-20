@@ -12,6 +12,7 @@ import com.bc.canal.client.CanalClient;
 
 /**
  * kafka发送类
+ *
  * @author zhou
  */
 public class KafkaSender implements MqSender {
@@ -34,11 +35,13 @@ public class KafkaSender implements MqSender {
                     producer.send(new ProducerRecord<>(CanalClient.kafkaTopic,
                             messageNo, data));
                 }
+            } catch (Exception e) {
+                logger.error("fail to send data from kafka: " + e.getMessage());
             } finally {
                 producer.close();
             }
         } catch (Exception e) {
-            logger.error("Fail to send data from kafka: " + e.getMessage());
+            logger.error("fail to send data from kafka: " + e.getMessage());
         }
     }
 }

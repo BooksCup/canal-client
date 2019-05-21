@@ -4,7 +4,7 @@
 
 	<groupId>com.bc</groupId>
 	<artifactId>canal-client</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.22</version>
 	<packaging>jar</packaging>
 
 	<name>canal-client</name>

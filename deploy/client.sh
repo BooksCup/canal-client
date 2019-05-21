@@ -5,7 +5,7 @@ JAVA=$(which java)
 
 ## service name
 SERVICE_DIR=$(cd `dirname $0`; pwd)
-SERVICE_NAME=canal-client-1.0.0
+SERVICE_NAME=canal-client-1.0.22
 JAR_NAME=$SERVICE_NAME\.jar
 PID=$SERVICE_NAME\.pid
 

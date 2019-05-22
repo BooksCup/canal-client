@@ -45,8 +45,6 @@ public class CanalClient {
     public static String rabbitmqUser;
     public static String rabbitmqPass;
     public static String rabbitmqQueuename;
-    public static String rabbitmqAck;
-    public static String rabbitmqDurable;
     public static String rabbitmqExchangeType;
     public static String rabbitmqExchangeName;
     public static String rabbitmqRoutingKey;
@@ -79,31 +77,37 @@ public class CanalClient {
         CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(canalServerHost, canalServerPortInt),
                 canalServerInstance, "", "");
         try {
-            connector.connect();
-            connector.subscribe(".*\\..*");
-            connector.rollback();
-
-            logger.info("connect success! \r\n startup...");
-            while (true) {
-                Message message = connector.getWithoutAck(canalBatchSizeInt);
-                long batchId = message.getId();
-                int size = message.getEntries().size();
-                if (-1 == batchId || 0 == size) {
-                    Thread.sleep(canalSleepInt);
-                } else {
-                    DataParser.parse(message.getEntries());
-                }
-                connector.ack(batchId);
-            }
+            connectAndGetMessage(connector);
         } catch (Exception e) {
-            logger.error("connect error! msg:" + e.getMessage());
-            e.printStackTrace();
+            logger.error("connect error! msg: " + e.getMessage());
         } finally {
             connector.disconnect();
         }
 
     }
 
+    private static void connectAndGetMessage(CanalConnector connector) throws Exception {
+        connector.connect();
+        connector.subscribe(".*\\..*");
+        connector.rollback();
+
+        logger.info("connect success! \r\n startup...");
+        while (true) {
+            Message message = connector.getWithoutAck(canalBatchSizeInt);
+            long batchId = message.getId();
+            int size = message.getEntries().size();
+            if (-1 == batchId || 0 == size) {
+                Thread.sleep(canalSleepInt);
+            } else {
+                DataParser.parse(message.getEntries());
+            }
+            connector.ack(batchId);
+        }
+    }
+
+    /**
+     * 初始化配置项
+     */
     private static void init() {
         canalServerHost = ConfigUtils.getProperty(Constants.CANAL_SERVER_HOST_KEY,
                 Constants.DEFAULT_CANAL_SERVER_HOST);
@@ -167,10 +171,6 @@ public class CanalClient {
                 Constants.DEFAULT_RABBITMQ_PASS);
         rabbitmqQueuename = ConfigUtils.getProperty(Constants.RABBITMQ_QUEUENAME_KEY,
                 Constants.DEFAULT_RABBITMQ_QUEUENAME);
-        rabbitmqAck = ConfigUtils.getProperty(Constants.RABBITMQ_ACK_KEY,
-                Constants.DEFAULT_RABBITMQ_ACK);
-        rabbitmqDurable = ConfigUtils.getProperty(Constants.RABBITMQ_DURABLE_KEY,
-                Constants.DEFAULT_RABBITMQ_DURABLE);
         // rabbitmq交换机类型(direct/topic/fanout)
         rabbitmqExchangeType = ConfigUtils.getProperty(Constants.RABBITMQ_EXCHANGE_TYPE_KEY,
                 Constants.DEFAULT_RABBITMQ_EXCHANGE_TYPE);

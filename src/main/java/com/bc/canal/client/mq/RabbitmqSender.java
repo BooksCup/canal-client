@@ -31,10 +31,6 @@ public class RabbitmqSender implements MqSender {
         String routingKey = CanalClient.rabbitmqRoutingKey;
 
         try {
-            boolean durable = false;
-            if (Constants.RABBITMQ_DURABLE_TRUE.equalsIgnoreCase(CanalClient.rabbitmqDurable)) {
-                durable = true;
-            }
             Connection connection = null;
             Channel channel = null;
             try {
@@ -48,13 +44,13 @@ public class RabbitmqSender implements MqSender {
                 if (Constants.RABBITMQ_EXCHANGE_TYPE_DIRECT.equalsIgnoreCase(CanalClient.rabbitmqExchangeType)) {
                     // direct
                     channel.exchangeDeclare(CanalClient.rabbitmqExchangeName, CanalClient.rabbitmqExchangeType);
-                    channel.queueDeclare(CanalClient.rabbitmqQueuename, durable, false, false, null);
+                    channel.queueDeclare(CanalClient.rabbitmqQueuename, false, false, false, null);
                     channel.queueBind(CanalClient.rabbitmqQueuename, CanalClient.rabbitmqExchangeName, routingKey);
 
                 } else if (Constants.RABBITMQ_EXCHAGE_TYPE_TOPIC.equalsIgnoreCase(CanalClient.rabbitmqExchangeType)) {
                     //topic
                     channel.exchangeDeclare(CanalClient.rabbitmqExchangeName, CanalClient.rabbitmqExchangeType);
-                    channel.queueDeclare(CanalClient.rabbitmqQueuename, durable, false, false, null);
+                    channel.queueDeclare(CanalClient.rabbitmqQueuename, false, false, false, null);
                     channel.queueBind(CanalClient.rabbitmqQueuename, CanalClient.rabbitmqExchangeName, routingKey);
 
                 } else if (Constants.RABBITMQ_EXCHANGE_TYPE_FANOUT.equalsIgnoreCase(CanalClient.rabbitmqExchangeType)) {

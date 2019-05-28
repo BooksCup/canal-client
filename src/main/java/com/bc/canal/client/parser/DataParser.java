@@ -77,7 +77,7 @@ public class DataParser {
                         append(",\"time\":\"").append(timeStr).append("\"}");
                 String rowStr = rowBuffer.toString();
                 //打印rowData
-                if (Constants.CANAL_PRINT_TRUE.equalsIgnoreCase(CanalClient.canalPrint)) {
+                if (CanalClient.canalPrint) {
                     logger.info(rowStr);
                 }
                 //写日志

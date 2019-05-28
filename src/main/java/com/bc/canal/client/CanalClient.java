@@ -27,7 +27,7 @@ public class CanalClient {
      * 是否打印rowData
      * y:打印  n:不打印  默认打印
      */
-    public static String canalPrint;
+    public static boolean canalPrint;
     public static String canalBinlogFilename;
     public static String canalBinlogDir;
 
@@ -64,7 +64,6 @@ public class CanalClient {
     /**
      * kafka
      */
-    public static String kafkaAsync;
     public static String kafkaBootstrapServers;
     public static String kafkaTopic;
 
@@ -143,8 +142,8 @@ public class CanalClient {
             canalSleepInt = Integer.valueOf(Constants.DEFAULT_CANAL_SLEEP);
         }
 
-        canalPrint = ConfigUtils.getProperty(Constants.CANAL_PRINT_KEY,
-                Constants.DEFAULT_CANAL_PRINT);
+        canalPrint = ConfigUtils.getBooleanProperty(Constants.CANAL_PRINT_KEY,
+                true);
         canalBinlogFilename = ConfigUtils.getProperty(Constants.CANAL_BINLOG_FILENAME_KEY,
                 Constants.DEFAULT_CANAL_BINLOG_FILENAME);
         canalBinlogDir = ConfigUtils.getProperty(Constants.CANAL_BINLOG_DIR_KEY,

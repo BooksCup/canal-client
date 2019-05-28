@@ -65,8 +65,6 @@ public class Constants {
      */
     public static final String CANAL_MQ_KEY = "canal.mq";
 
-    public static final String CANAL_PRINT_TRUE = "y";
-
     public static final String CANAL_MQ_RABBITMQ = "rabbitmq";
 
     public static final String CANAL_MQ_REDIS = "redis";
@@ -86,17 +84,11 @@ public class Constants {
 
     public static final String RABBITMQ_QUEUENAME_KEY = "rabbitmq.queuename";
 
-    public static final String RABBITMQ_ACK_KEY = "rabbitmq.ack";
-
-    public static final String RABBITMQ_DURABLE_KEY = "rabbitmq.durable";
-
     public static final String RABBITMQ_EXCHANGE_TYPE_KEY = "rabbitmq.exchange.type";
 
     public static final String RABBITMQ_EXCHANGE_NAME_KEY = "rabbitmq.exchange.name";
 
     public static final String RABBITMQ_ROUTINGKEY_KEY = "rabbitmq.routing.key";
-
-    public static final String RABBITMQ_DURABLE_TRUE = "y";
 
     /**
      * redis
@@ -152,10 +144,6 @@ public class Constants {
     public static final String DEFAULT_RABBITMQ_PASS = "";
 
     public static final String DEFAULT_RABBITMQ_QUEUENAME = "canal_binlog_data";
-
-    public static final String DEFAULT_RABBITMQ_ACK = "n";
-
-    public static final String DEFAULT_RABBITMQ_DURABLE = "n";
 
     /**
      * rabbitmq默认直连交换机

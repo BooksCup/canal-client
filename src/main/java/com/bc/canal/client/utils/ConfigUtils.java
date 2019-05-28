@@ -37,6 +37,16 @@ public class ConfigUtils {
         return defaultValue;
     }
 
+    public static boolean getBooleanProperty(String key, boolean defaultValue) {
+        Properties properties = getProperties();
+        String value = properties.getProperty(key);
+        if (value == null) {
+            return defaultValue;
+        }
+        return Boolean.valueOf(value).booleanValue();
+    }
+
+
     public static Properties getProperties() {
         if (null == PROPERTIES) {
             synchronized (ConfigUtils.class) {

@@ -4,9 +4,9 @@
 
 ## 部署安装
 ### `canal-server:`
-canal-server的安装见博客:https://blog.csdn.net/Python_5S/article/details/90314994
+[canal-server的安装](https://blog.csdn.net/Python_5S/article/details/90314994)
 ### `canal-client:`
-canal-client的安装见博客:https://blog.csdn.net/Python_5S/article/details/90374123
+[canal-client的安装](https://blog.csdn.net/Python_5S/article/details/90374123)
 
 
 ## 各种MQ的介绍和接入说明:

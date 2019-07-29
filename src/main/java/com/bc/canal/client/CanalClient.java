@@ -2,6 +2,7 @@ package com.bc.canal.client;
 
 import java.net.InetSocketAddress;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.alibaba.otter.canal.client.CanalConnector;
@@ -36,6 +37,8 @@ public class CanalClient {
     static int canalServerPortInt;
     static int canalBatchSizeInt;
     static int canalSleepInt;
+    static String canalFilterRegex;
+
 
     /**
      * rabbitmq
@@ -87,7 +90,21 @@ public class CanalClient {
 
     private static void connectAndGetMessage(CanalConnector connector) throws Exception {
         connector.connect();
-        connector.subscribe(".*\\..*");
+
+        /**
+         * canal白名单配置
+         * mysql 数据解析关注的表
+         * 常见例子：
+         * 1. 所有表：.* or .*\\..*
+         * 2. canal schema下所有表： canal\\..*
+         * 3. canal下的以canal打头的表：canal\\.canal.*
+         * 4. canal schema下的一张表：canal.test1
+         * 5. 多个规则组合使用：canal\\..*,mysql.test1,mysql.test2 (逗号分隔)
+         */
+        if (!StringUtils.isEmpty(canalFilterRegex)) {
+            connector.subscribe(canalFilterRegex);
+        }
+
         connector.rollback();
 
         logger.info("connect success! \r\n startup...");
@@ -152,6 +169,8 @@ public class CanalClient {
         canalMq = ConfigUtils.getProperty(Constants.CANAL_MQ_KEY,
                 Constants.DEFAULT_CANAL_MQ);
 
+        canalFilterRegex = ConfigUtils.getProperty(Constants.CANAL_FILTER_REGEX_KEY,
+                Constants.DEFAULT_CANAL_FILTER_REGEX);
 
         //rabbitmq
         rabbitmqHost = ConfigUtils.getProperty(Constants.RABBITMQ_HOST_KEY,

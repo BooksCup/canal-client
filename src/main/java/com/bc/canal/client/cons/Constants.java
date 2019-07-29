@@ -72,6 +72,11 @@ public class Constants {
     public static final String CANAL_MQ_KAFKA = "kafka";
 
     /**
+     * CANAL FILTER REGEX
+     */
+    public static final String CANAL_FILTER_REGEX_KEY = "canal.filter.regex";
+
+    /**
      * rabbitMq
      */
     public static final String RABBITMQ_HOST_KEY = "rabbitmq.host";
@@ -130,6 +135,8 @@ public class Constants {
     public static final String DEFAULT_CANAL_BINLOG_DIR = System.getProperty("user.dir") + File.separator + "data";
 
     public static final String DEFAULT_CANAL_MQ = "rabbitmq";
+
+    public static final String DEFAULT_CANAL_FILTER_REGEX = "";
 
     //RABBITMQ
     /**
